@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronPlot-Sample", "IronPlot-Sample\IronPlot-Sample.csproj", "{3B78C624-4017-4934-886B-DCFB4BC97D5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IronPlot", "IronPlot\IronPlot.csproj", "{9843B558-B6C8-46B4-9578-6766E08F8CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B78C624-4017-4934-886B-DCFB4BC97D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B78C624-4017-4934-886B-DCFB4BC97D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B78C624-4017-4934-886B-DCFB4BC97D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B78C624-4017-4934-886B-DCFB4BC97D5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9843B558-B6C8-46B4-9578-6766E08F8CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9843B558-B6C8-46B4-9578-6766E08F8CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9843B558-B6C8-46B4-9578-6766E08F8CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9843B558-B6C8-46B4-9578-6766E08F8CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

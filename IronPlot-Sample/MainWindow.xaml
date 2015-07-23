@@ -1,0 +1,61 @@
+﻿<Window x:Class="PlotTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ironplot="clr-namespace:IronPlot;assembly=IronPlot"
+    xmlns:ironplot3d="clr-namespace:IronPlot.Plotting3D;assembly=IronPlot"
+    Title="MainWindow" Height="480" Width="640">
+    <Grid>
+        <TabControl>
+            <TabItem Header="2D Plot">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ironplot:Plot2D Name="plotMultipleAxes" Grid.Row="1" Visibility="Visible"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="2D equal axes">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ironplot:Plot2D Name="equalAxesPlot" EqualAxes="True" Grid.Row="1" Visibility="Visible"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="2D with dates">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <ironplot:Plot2D Name="datesPlot" Grid.Row="1" Visibility="Visible"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="2D False Colour Plot">
+                <ironplot:Plot2D Name="falseColourPlot" Visibility="Visible"/>
+            </TabItem>
+            <TabItem Header="3D Plot">
+                <ironplot3d:Plot3D Name="surfacePlot" Visibility="Visible"/>
+            </TabItem>
+            <TabItem Header="2D Plot in ScrollViewer">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ironplot:Plot2D Name="scrollViewerPlot" Visibility="Visible"/>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="2D Plot alignment">
+                <ironplot:Plot2DGrid Name="aligningGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <ironplot:Plot2D Name="plot1" Grid.Row="0"></ironplot:Plot2D>
+                    <ironplot:Plot2D Name="plot2" Grid.Row="1"></ironplot:Plot2D>
+                    <ironplot:Plot2D Name="plot3" Grid.Row="2"></ironplot:Plot2D>
+                </ironplot:Plot2DGrid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
