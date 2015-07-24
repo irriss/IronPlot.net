@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>IronPlot.net</title>
+    <authors>Ruslan Enikeev</authors>
+    <owners></owners>
+    <projectUrl>https://github.com/irriss/IronPlot.net</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Nice charts for .net</description>
+    <copyright></copyright>
+    <tags></tags>
+  </metadata>
+</package>

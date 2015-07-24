@@ -262,6 +262,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Plot3D\3DPrimitives\Line.fx" />
     <EmbeddedResource Include="Plot3D\3DPrimitives\Line.fxo" />
+    <None Include="IronPlot.nuspec" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
