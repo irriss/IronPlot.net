@@ -8,10 +8,10 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("IronPlot.net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Nice charts for .net")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("IronPlot.net")]
+[assembly: AssemblyProduct("github.com/irriss/IronPlot.net")]
 [assembly: AssemblyCopyright("Copyright © Ruslan Enikeev 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

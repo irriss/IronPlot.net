@@ -7,11 +7,11 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PlotTest.net - Sample App")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("IronPlot.net - Sample App")]
+[assembly: AssemblyDescription("Sample application for IronPlot.net")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PlotTest.net - Sample App")]
+[assembly: AssemblyProduct("github.com/irriss/IronPlot.net")]
 [assembly: AssemblyCopyright("Copyright © Ruslan Enikeev 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
