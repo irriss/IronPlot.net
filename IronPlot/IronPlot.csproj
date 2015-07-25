@@ -53,13 +53,14 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE;NumPy</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -264,6 +265,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Plot3D\3DPrimitives\Line.fx" />
     <EmbeddedResource Include="Plot3D\3DPrimitives\Line.fxo" />
+    <None Include="IronPlot.symbols.nuspec" />
     <None Include="IronPlot.nuspec" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
