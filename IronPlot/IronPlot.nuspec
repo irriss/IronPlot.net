@@ -13,4 +13,8 @@
     <copyright></copyright>
     <tags></tags>
   </metadata>
+  <files>
+    <file src="bin\Release\*.dll" target="lib" />
+    <file src="bin\Release\*.pdb" target="lib" />
+  </files>
 </package>
