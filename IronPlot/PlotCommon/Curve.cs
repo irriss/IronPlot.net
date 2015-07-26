@@ -33,6 +33,17 @@ namespace IronPlot
 
         public int PointsCount { get; private set; }
 
+        public void Add(double x, double y)
+        {
+            this.x.Add(x);
+            this.y.Add(y);
+
+            PointsCount = this.x.Count();
+
+            Transform(null, null);
+            PrepareLineData(PointsCount);
+        }
+
         public void Add(double[] x, double[] y)
         {
             if (x.Length != y.Length)
@@ -104,29 +115,37 @@ namespace IronPlot
 
         internal void Transform(Func<double, double> graphTransformX, Func<double, double> graphTransformY)
         {
-            if (graphTransformX == null)
+            if (PointsCount == 0)
             {
-                xTransformed = x.ToArray();
+                xTransformed = new double[] { 0 };
+                yTransformed = new double[] { 0 };
+                return;
             }
             else
             {
-                int length = x.Count();
-                xTransformed = new double[length];
-                for (int i = 0; i < length; ++i) xTransformed[i] = graphTransformX(x[i]);
-            }
-            if (graphTransformY == null)
-            {
-                yTransformed = y.ToArray();
-            }
-            else
-            {
-                int length = y.Count();
-                yTransformed = new double[length];
-                for (int i = 0; i < length; ++i) yTransformed[i] = graphTransformY(y[i]);
+                if (graphTransformX == null)
+                {
+                    xTransformed = x.ToArray();
+                }
+                else
+                {
+                    int length = x.Count();
+                    xTransformed = new double[length];
+                    for (int i = 0; i < length; ++i) xTransformed[i] = graphTransformX(x[i]);
+                }
+                if (graphTransformY == null)
+                {
+                    yTransformed = y.ToArray();
+                }
+                else
+                {
+                    int length = y.Count();
+                    yTransformed = new double[length];
+                    for (int i = 0; i < length; ++i) yTransformed[i] = graphTransformY(y[i]);
+                }
             }
 
-            if(PointsCount!=0)
-                bounds = new Rect(new Point(xTransformed.Min(), yTransformed.Min()), new Point(xTransformed.Max(), yTransformed.Max()));
+            bounds = new Rect(new Point(xTransformed.Min(), yTransformed.Min()), new Point(xTransformed.Max(), yTransformed.Max()));
 
             DetermineSorted();
         }

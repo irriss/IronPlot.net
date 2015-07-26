@@ -164,6 +164,8 @@ namespace PlotTest
         }
 
         Plot2DCurve liveCurve;
+        Plot2DCurve emptyCurve;
+
         int i = 0;
         Random random = new Random();
 
@@ -172,7 +174,7 @@ namespace PlotTest
             plot1.Axes.XAxes.First().BindToAxis(plot2.Axes.XAxes.First());
             plot2.Axes.XAxes.First().BindToAxis(plot3.Axes.XAxes.First());
 
-            var curve1 = plot1.AddLine(new double[] { 0.5, 1.2 }, new double[] { 0.7, 0.4 });
+            var curve1 = plot1.AddLine(new double[] { 0.5, 1.2, 2 }, new double[] { 0.7, 0.4, 0.5 });
             curve1.QuickLine = "o";
             curve1.MarkersFill = Brushes.Green;
 
@@ -182,13 +184,15 @@ namespace PlotTest
             aTimer.Elapsed += aTimer_Elapsed;
             aTimer.Interval = 1000;
             aTimer.Enabled = true;
+
+            emptyCurve = plot3.AddLine(new double[] { });
         }
 
         void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke((Action)(() =>
             {
-                liveCurve.Add(new double[] { i++ }, new double[] { random.NextDouble() });
+                liveCurve.Add(i++, random.NextDouble());
             }));
         }
     }

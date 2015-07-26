@@ -320,6 +320,22 @@ namespace IronPlot
             host.Canvas.Children.Remove(annotation);
         }
 
+        public void Add(DateTime x, double y)
+        {
+            Add(x.ToOADate(), y);
+        }
+
+        public void Add(object x, object y)
+        {
+            Add(Plotting.Array(x), Plotting.Array(y));
+        }
+
+        public void Add(double x, double y)
+        {
+            curve.Add(x, y);
+            host.InvalidateVisual();
+        }
+
         public void Add(double[] x, double[] y)
         {
             curve.Add(x, y);
