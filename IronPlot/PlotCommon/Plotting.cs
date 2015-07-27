@@ -110,9 +110,13 @@ namespace IronPlot
             {
                 return convertible as double[];
             }
-            else if (convertible is DateTime[] || convertible is IEnumerable<DateTime>)
+            else if (convertible is DateTime[])
             {
                 return (convertible as DateTime[]).Select(t => t.ToOADate()).ToArray();
+            }
+            else if (convertible is IEnumerable<DateTime>)
+            {
+                return (convertible as IEnumerable<DateTime>).Select(t => t.ToOADate()).ToArray();
             }
             else if (convertible is IEnumerable<double>)
             {
