@@ -427,7 +427,7 @@ namespace IronPlot
                 line.Data = LineGeometries.PathGeometryFromCurve(curve, graphToCanvas);
                 markers.Data = MarkerGeometries.MarkersAsGeometry(Curve, graphToCanvas, (MarkersType)GetValue(MarkersTypeProperty), (double)GetValue(MarkersSizeProperty));
             }
-            Point annotationPoint = graphToCanvas.Transform(new Point(curve.xTransformed[0], curve.yTransformed[0]));
+            Point annotationPoint = graphToCanvas.Transform(new Point(curve.xTransformed.FirstOrDefault(), curve.yTransformed.FirstOrDefault()));
             annotation.SetValue(Canvas.TopProperty, annotationPoint.Y); annotation.SetValue(Canvas.LeftProperty, annotationPoint.X);
         }
 
@@ -453,6 +453,9 @@ namespace IronPlot
         {
             get
             {
+                if (Bounds == Rect.Empty)
+                    return Rect.Empty;
+
                 return TransformRect(Bounds, xAxis.CanvasTransform, yAxis.CanvasTransform);
             }
         }
@@ -460,7 +463,10 @@ namespace IronPlot
         public override Rect PaddedBounds
         {
             get 
-            {  
+            {
+                if (Bounds == Rect.Empty)
+                    return Rect.Empty;
+
                 Rect paddedBounds =  new Rect(Bounds.Left - 0.05 * Bounds.Width, Bounds.Top - 0.05 * Bounds.Height, Bounds.Width * 1.1, Bounds.Height * 1.1);
                 return TransformRect(paddedBounds, xAxis.CanvasTransform, yAxis.CanvasTransform); 
             }

@@ -29,7 +29,7 @@ namespace IronPlot
         protected Matrix cachedTransform = Matrix.Identity;
         protected Rect cachedRegion = new Rect(0, 0, 0, 0);
 
-        protected Rect bounds = new Rect(0, 0, 1, 1);
+        protected Rect bounds = Rect.Empty;
 
         public int PointsCount { get; private set; }
 
@@ -117,9 +117,9 @@ namespace IronPlot
         {
             if (PointsCount == 0)
             {
-                xTransformed = new double[] { 0 };
-                yTransformed = new double[] { 0 };
-                return;
+                xTransformed = new double[] {  };
+                yTransformed = new double[] {  };
+                bounds = Rect.Empty;
             }
             else
             {
@@ -143,10 +143,9 @@ namespace IronPlot
                     yTransformed = new double[length];
                     for (int i = 0; i < length; ++i) yTransformed[i] = graphTransformY(y[i]);
                 }
+
+                bounds = new Rect(new Point(xTransformed.Min(), yTransformed.Min()), new Point(xTransformed.Max(), yTransformed.Max()));
             }
-
-            bounds = new Rect(new Point(xTransformed.Min(), yTransformed.Min()), new Point(xTransformed.Max(), yTransformed.Max()));
-
             DetermineSorted();
         }
 

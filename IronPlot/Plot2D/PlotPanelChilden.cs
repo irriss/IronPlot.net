@@ -63,8 +63,15 @@ namespace IronPlot
             for (int i = 0; i < plotItems.Count; ++i)
             {
                 child = plotItems[i];
-                if ((child.XAxis != axis) && (child.YAxis != axis)) continue;
+                
+                if ((child.XAxis != axis) && (child.YAxis != axis)) 
+                    continue;
+                
                 Rect bounds = child.PaddedBounds;
+
+                if (bounds == Rect.Empty)
+                    continue;
+
                 if (rangeUpdated == false)
                 {
                     range = (axis is XAxis) ? new Range(bounds.Left, bounds.Right) : new Range(bounds.Top, bounds.Bottom);
