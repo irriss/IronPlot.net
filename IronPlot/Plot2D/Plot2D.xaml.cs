@@ -317,5 +317,10 @@ namespace IronPlot
         }
 
         #endregion ConvenienceMethods
+
+        public void AdjustRange()
+        {
+            PlotPanel.AdjustRange();
+        }
     }
 }
