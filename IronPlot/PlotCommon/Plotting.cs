@@ -106,17 +106,24 @@ namespace IronPlot
 
         public static double[] Array(object convertible)
         {
-            if (convertible is double[]) return convertible as double[];
-            else if (convertible is DateTime[]) return (convertible as DateTime[]).Select(t => t.ToOADate()).ToArray();
-            else if (convertible is IEnumerable<double>) return (convertible as IEnumerable<double>).ToArray();
-            else if (convertible is IEnumerable<DateTime>) return (convertible as IEnumerable<DateTime>).Select(t => t.ToOADate()).ToArray();
-            else if ((convertible is IEnumerable<object>) || (convertible is IEnumerable))
+            if (convertible is double[])
             {
-                System.Array array = GeneralArray.ToDoubleArray(convertible);
-                if (array.Rank == 1) return array as double[];
-                else throw new Exception("Array must be one dimensional.");
+                return convertible as double[];
             }
-            else throw new Exception("Unknown array type.");
+            else if (convertible is DateTime[] || convertible is IEnumerable<DateTime>)
+            {
+                return (convertible as DateTime[]).Select(t => t.ToOADate()).ToArray();
+            }
+            else if (convertible is IEnumerable<double>)
+            {
+                return (convertible as IEnumerable<double>).ToArray();
+            }
+            else if (convertible is IEnumerable)
+            {
+                return (convertible as IEnumerable).OfType<object>().Select(x => Convert.ToDouble(x)).ToArray();
+            }
+            else 
+                throw new Exception("Unknown array type.");
         }
     }
 }
