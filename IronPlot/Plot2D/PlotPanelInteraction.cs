@@ -109,14 +109,11 @@ namespace IronPlot
             {
                 dragging = false;
                 this.Cursor = Cursors.Arrow;
-                List<Axis2D> allAxes;
-                if (isSingleAxis) allAxes = new List<Axis2D> { sender as Axis2D };
-                else allAxes = Axes.XAxes.Concat(Axes.YAxes).ToList();
-                foreach (Axis2D axis in allAxes)
-                {
-                    Range axisRange = GetRangeFromChildren(axis);
-                    if (axisRange.Length != 0) axis.SetValue(Axis2D.RangeProperty, axisRange);
-                }
+
+                if (isSingleAxis)
+                    AdjustRange(sender as Axis2D);
+                else
+                    AdjustRange();
             }
             else
             {

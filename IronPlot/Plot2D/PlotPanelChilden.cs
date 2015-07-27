@@ -47,12 +47,25 @@ namespace IronPlot
                     child.Host = this;
                 }
             }
-            var allAxes = Axes.XAxes.Concat(Axes.YAxes);
-            foreach (Axis2D axis in allAxes)
+
+            AdjustRange();
+        }
+
+        public void AdjustRange()
+        {
+            var axes = Axes.XAxes.Concat(Axes.YAxes);
+
+            foreach (Axis2D axis in axes)
             {
-                Range axisRange = GetRangeFromChildren(axis);
-                if (axisRange.Length != 0) axis.SetValue(Axis2D.RangeProperty, axisRange);
+                AdjustRange(axis);
             }
+        }
+
+        public void AdjustRange(Axis2D axis)
+        {
+            Range axisRange = GetRangeFromChildren(axis);
+            if (axisRange.Length != 0)
+                axis.SetValue(Axis2D.RangeProperty, axisRange);
         }
 
         protected Range GetRangeFromChildren(Axis2D axis)
@@ -82,17 +95,5 @@ namespace IronPlot
             return range;
         }
 
-        protected Rect GetBoundsFromChildren()
-        {
-            Rect bounds = new Rect(new Size(10, 10)); // default if there are no children.
-            Plot2DItem child;
-            for (int i = 0; i < plotItems.Count; ++i)
-            {
-                child = plotItems[i];
-                if (i == 0) bounds = child.PaddedBounds;
-                else bounds.Union(child.PaddedBounds);
-            }
-            return bounds;
-        }
     }
 }
