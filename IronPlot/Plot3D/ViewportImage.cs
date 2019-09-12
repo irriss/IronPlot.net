@@ -1,17 +1,14 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System.Collections.Generic;
 using SharpDX;
 using SharpDX.Direct3D9;
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
-using System.Diagnostics;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using Matrix = SharpDX.Matrix;
+using SharpDX.Mathematics.Interop;
 
 namespace IronPlot.Plotting3D
 {
@@ -213,9 +210,14 @@ namespace IronPlot.Plotting3D
             view = Matrix.LookAtRH(CameraPosition, CameraTarget, CameraUpVector);
             world = Matrix.Identity;
             // ENDTODO
-            GraphicsDevice.SetTransform(TransformState.Projection, ref projection);
-            GraphicsDevice.SetTransform(TransformState.View, ref view);
-            GraphicsDevice.SetTransform(TransformState.World, ref world);
+
+            RawMatrix rawProjection = projection;
+            RawMatrix rawView = view;
+            RawMatrix rawWorld = world;
+
+            GraphicsDevice.SetTransform(TransformState.Projection, ref rawProjection);
+            GraphicsDevice.SetTransform(TransformState.View, ref rawView);
+            GraphicsDevice.SetTransform(TransformState.World, ref rawWorld);
             
             foreach (Model3D model in this.Models)
             {

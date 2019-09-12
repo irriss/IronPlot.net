@@ -1,16 +1,9 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
 using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using SharpDX.DXGI;
 using SharpDX.Direct3D10;
-using System.Windows.Interop;
-using System.Windows.Forms;
-using System.Windows.Threading;
 using SharpDX;
 
 namespace IronPlot
@@ -90,7 +83,7 @@ namespace IronPlot
             // We need a a D3D9 device.
             sharpDXGraphicsDeviceService9 = SharpDXGraphicsDeviceService9.RefToNew(0, 0);
             
-            factoryDXGI = new Factory();
+            factoryDXGI = new Factory(IntPtr.Zero);
             factory2D = new SharpDX.Direct2D1.Factory();
             // Try to create a hardware device first and fall back to a
             // software (WARP doesn't let us share resources)
