@@ -1,19 +1,14 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace IronPlot
-{   
+{
     public class Plot2DCurve : Plot2DItem
     {
         //VisualLine visualLine;
@@ -199,6 +194,11 @@ namespace IronPlot
             get { return (bool)GetValue(AnnotationEnabledProperty); }
         }
 
+        /// <summary>
+        /// Do not add this curve to legend if false
+        /// </summary>
+        public bool LegendEnabled { get; private set; }
+
         protected static void OnMarkersChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
             ((Plot2DCurve)obj).UpdateLegendMarkers();
@@ -293,7 +293,10 @@ namespace IronPlot
                     markersD2D.GraphToCanvas = graphToCanvas;
                 }
             }
-            Plot.Legend.Items.Add(legendItem);
+            if (LegendEnabled)
+            {
+                Plot.Legend.Items.Add(legendItem);
+            }
             annotation.SetValue(Canvas.ZIndexProperty, 201);
             annotation.Visibility = Visibility.Collapsed;
             host.Canvas.Children.Add(annotation);
@@ -342,15 +345,17 @@ namespace IronPlot
             host.InvalidateVisual();
         }
 
-        public Plot2DCurve(Curve curve)
+        public Plot2DCurve(Curve curve, bool addLegend = true)
         {
             this.curve = curve;
+            LegendEnabled = addLegend;
             Initialize();
         }
 
-        public Plot2DCurve(object x, object y)
+        public Plot2DCurve(object x, object y, bool addLegend = true)
         {
             this.curve = new Curve(Plotting.Array(x), Plotting.Array(y));
+            LegendEnabled = addLegend;
             Initialize();
         }
 
@@ -364,16 +369,21 @@ namespace IronPlot
             //
             annotation = new PlotPointAnnotation();
             //
-            legendItem = CreateLegendItem();
-            //
-            // Name binding
-            Binding titleBinding = new Binding("Title") { Source = this, Mode = BindingMode.OneWay };
-            legendItem.SetBinding(LegendItem.TitleProperty, titleBinding);
+
+            if (LegendEnabled)
+            {
+                legendItem = CreateLegendItem();
+                //
+                // Name binding
+                Binding titleBinding = new Binding("Title") { Source = this, Mode = BindingMode.OneWay };
+                legendItem.SetBinding(LegendItem.TitleProperty, titleBinding);
+                BindToThis(legendLine, false, true);
+                BindToThis(legendMarker, true, false);
+            }
             // Other bindings:
             BindToThis(line, false, true);
-            BindToThis(legendLine, false, true);
             BindToThis(markers, true, false);
-            BindToThis(legendMarker, true, false);
+            
         }
 
         protected virtual LegendItem CreateLegendItem()
@@ -623,9 +633,12 @@ namespace IronPlot
 
         internal void UpdateLegendMarkers()
         {
-            double markersSize = (double)GetValue(MarkersSizeProperty);
-            legendMarker.Data = MarkerGeometries.LegendMarkerGeometry((MarkersType)GetValue(MarkersTypeProperty), markersSize);
-            if (legendMarker.Data != null) legendMarker.Data.Transform = new TranslateTransform(markersSize / 2, markersSize / 2);
+            if (LegendEnabled)
+            {
+                double markersSize = (double)GetValue(MarkersSizeProperty);
+                legendMarker.Data = MarkerGeometries.LegendMarkerGeometry((MarkersType)GetValue(MarkersTypeProperty), markersSize);
+                if (legendMarker.Data != null) legendMarker.Data.Transform = new TranslateTransform(markersSize / 2, markersSize / 2);
+            }
         }
     }
 }

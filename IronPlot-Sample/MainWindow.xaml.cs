@@ -45,7 +45,8 @@ namespace PlotTest
         {
             // Example 2D plot:
             // First curve:
-            Plot2DCurve curve1 = plotMultipleAxes.AddLine(new double[] { 1.2, 1.3, 2.8, 5.6, 1.9, -5.9 });
+            bool addLegend = false; //do not show this curve in legend
+            Plot2DCurve curve1 = plotMultipleAxes.AddLine(new double[] { 1.2, 1.3, 2.8, 5.6, 1.9, -5.9 }, addLegend);
             curve1.Stroke = Brushes.Blue; curve1.StrokeThickness = 1.5; curve1.MarkersType = MarkersType.Square;
             // Second curve:
             int nPoints = 2000;

@@ -238,47 +238,47 @@ namespace IronPlot
 
         #region ConvenienceMethods
 
-        public Plot2DCurve AddLine(double[] y)
+        public Plot2DCurve AddLine(double[] y, bool addLegend = true)
         {
             double[] x = MathHelper.Counter(y.Length);
-            Plot2DCurve plot2DCurve = AddLine(x, y);
+            Plot2DCurve plot2DCurve = AddLine(x, y, addLegend);
             return plot2DCurve;
         }
 
-        public Plot2DCurve AddLine(double[] y, string quickLine)
+        public Plot2DCurve AddLine(double[] y, string quickLine, bool addLegend = true)
         {
             double[] x = MathHelper.Counter(y.Length);
-            Plot2DCurve plot2DCurve = AddLine(x, y);
+            Plot2DCurve plot2DCurve = AddLine(x, y, addLegend);
             plot2DCurve.QuickLine = quickLine;
             return plot2DCurve;
         }
 
-        public Plot2DCurve AddLine(double[] x, double[] y, string quickLine)
+        public Plot2DCurve AddLine(double[] x, double[] y, string quickLine, bool addLegend = true)
         {
-            Plot2DCurve plot2DCurve = AddLine(x, y);
+            Plot2DCurve plot2DCurve = AddLine(x, y, addLegend);
             plot2DCurve.QuickLine = quickLine;
             return plot2DCurve;
         }
 
-        public Plot2DCurve AddLine(object x, object y, string quickLine)
+        public Plot2DCurve AddLine(object x, object y, string quickLine, bool addLegend = true)
         {
-            Plot2DCurve plot2DCurve = AddLine(x, y);
+            Plot2DCurve plot2DCurve = AddLine(x, y, addLegend);
             plot2DCurve.QuickLine = quickLine;
             return plot2DCurve;
         }
 
-        public Plot2DCurve AddLine(double[] x, double[] y)
+        public Plot2DCurve AddLine(double[] x, double[] y, bool addLegend = true)
         {
             Curve curve = new Curve(x, y);
-            Plot2DCurve plot2DCurve = new Plot2DCurve(curve);
+            Plot2DCurve plot2DCurve = new Plot2DCurve(curve, addLegend);
             this.Children.Add(plot2DCurve);
             return plot2DCurve;
         }
 
-        public Plot2DCurve AddLine(object x, object y)
+        public Plot2DCurve AddLine(object x, object y, bool addLegend = true)
         {
             Curve curve = new Curve(Plotting.Array(x), Plotting.Array(y));
-            Plot2DCurve plot2DCurve = new Plot2DCurve(curve);
+            Plot2DCurve plot2DCurve = new Plot2DCurve(curve, addLegend);
             this.Children.Add(plot2DCurve);
             return plot2DCurve;
         }
