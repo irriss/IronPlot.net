@@ -1,11 +1,17 @@
 # IronPlot.net
+
+[![ironplotnet MyGet Build Status](https://www.myget.org/BuildSource/Badge/ironplotnet?identifier=083575c3-5303-41d3-b053-f8ec94b2f868)](https://www.myget.org/)
+
 Nice charts for .net
+
+![Sample screenshot 1](IronPlot.Sample_sO43EQucSj.png)
+![Sample screenshot 2](IronPlot.Sample_LWS1PI2Nyv.png)
 
 This is open source solution for nice charts in .net platform
 
-Charts library was taken from IronLab project (ironlab.googlecode.com), improved and deployed as a Nuget package.
+Charts library was taken from IronLab project (https://github.com/rwg0/ironlab), improved and deployed as a Nuget package.
 
-Just download code from the repository, open 'IronPlot.net.sln' in VisualStudio and run 'IronPlot-Sample'
+Just download code from the repository, open 'IronPlot.net.sln' in Visual Studio and run 'IronPlot-Sample'
 
 Much freedom for changes with GNU Lesser GPL licence
 
