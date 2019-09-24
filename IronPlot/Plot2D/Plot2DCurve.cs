@@ -428,9 +428,12 @@ namespace IronPlot
             Curve.FilterMinMax(canvasToGraph, new Rect(new Point(xAxis.Min, yAxis.Min), new Point(xAxis.Max, yAxis.Max)));
             if (host.UseDirect2D == true && !host.direct2DControl.InitializationFailed)
             {
-                lineD2D.Geometry = curve.ToDirect2DPathGeometry(lineD2D.Factory, graphToCanvas);
-                markersD2D.SetGeometry((MarkersType)GetValue(MarkersTypeProperty), (double)GetValue(MarkersSizeProperty));
-                //host.direct2DControl.RequestRender();
+                if (curve.PointsCount > 0)
+                {
+                    lineD2D.Geometry = curve.ToDirect2DPathGeometry(lineD2D.Factory, graphToCanvas);
+                    markersD2D.SetGeometry((MarkersType)GetValue(MarkersTypeProperty), (double)GetValue(MarkersSizeProperty));
+                    //host.direct2DControl.RequestRender();
+                }
             }
             else
             {
